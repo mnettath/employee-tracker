@@ -18,7 +18,8 @@ function viewAllEmployees() {
     if (err) {
       console.log(err);
     } else {
-      console.log(results);
+      console.table(results);
+      ``;
     }
   });
 }
@@ -165,7 +166,7 @@ function viewAllRoles() {
     if (err) {
       console.log(err);
     } else {
-      console.log(results);
+      console.table(results);
     }
   });
 }
@@ -228,7 +229,7 @@ function viewAllDepartments() {
     if (err) {
       console.log(err);
     } else {
-      console.log(results);
+      console.table(results);
     }
   });
 }
