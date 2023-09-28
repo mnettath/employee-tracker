@@ -10,7 +10,8 @@ const db = mysql.createConnection(
   console.log(`Connected to the employees_db`)
 );
 
-// need to add code: when user selects View all Employees, the table for employee must populate
+// User selects: "View all Employees"
+// Table for employee must populate
 function viewAllEmployees() {
   db.query("SELECT * FROM employee", (err, results) => {
     if (err) {
@@ -21,4 +22,16 @@ function viewAllEmployees() {
   });
 }
 
-module.exports = { viewAllEmployees };
+// User selects: "View All Roles"
+// Table for Roles must populate
+function viewAllRoles() {
+  db.query("SELECT * FROM role", (err, results) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(results);
+    }
+  });
+}
+
+module.exports = { viewAllEmployees, viewAllRoles };
