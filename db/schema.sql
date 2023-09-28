@@ -10,7 +10,7 @@ USE employees_db;
 USE employees_db;
 
 CREATE TABLE department (
-    id INT  NOT NULL ,
+    id INT  NOT NULL AUTO_INCREMENT,
     name VARCHAR(30) NOT NULL ,
     CONSTRAINT PK_department PRIMARY KEY CLUSTERED (
         id ASC

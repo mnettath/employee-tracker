@@ -107,6 +107,8 @@ function addEmployee() {
     });
 }
 
+// UPDATE EMPLOYEE ROLE
+
 // User selects: "View All Roles"
 // Table for Roles must populate
 function viewAllRoles() {
@@ -182,10 +184,37 @@ function viewAllDepartments() {
   });
 }
 
+// ADD DEPARTMENT
+// What is the name of the department?
+function addDepartment() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "What is the name of the department?",
+        name: "department",
+      },
+    ])
+    .then((answers) => {
+      const query = `INSERT INTO department (name) VALUES (?)`;
+
+      db.query(query, [answers.department], (err, res) => {
+        if (err) {
+          console.log("Error inserting department:", err);
+        } else {
+          console.log("This department has been added to the db.");
+        }
+      });
+    });
+}
+
+// QUIT?
+
 module.exports = {
   viewAllEmployees,
   addEmployee,
   viewAllRoles,
   addRole,
   viewAllDepartments,
+  addDepartment,
 };

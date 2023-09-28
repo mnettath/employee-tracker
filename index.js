@@ -36,5 +36,8 @@ inquirer
       case "View All Departments":
         dbFunctions.viewAllDepartments();
         break;
+      case "Add Department":
+        dbFunctions.addDepartment();
+        break;
     }
   });
