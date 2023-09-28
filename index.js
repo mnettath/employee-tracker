@@ -30,6 +30,9 @@ inquirer
       case "View All Roles":
         dbFunctions.viewAllRoles();
         break;
+      case "Add Role":
+        dbFunctions.addRole();
+        break;
       case "View All Departments":
         dbFunctions.viewAllDepartments();
         break;

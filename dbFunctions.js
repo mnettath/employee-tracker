@@ -119,6 +119,57 @@ function viewAllRoles() {
   });
 }
 
+// User selects: "Add Role"
+// What is the name of this role? input
+// What is the salary of this role? input
+// Which department does this role belong to? list
+// Added "name of role" to the db
+function addRole() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "What is the name of this role?",
+        name: "role",
+      },
+      {
+        type: "input",
+        message: "What is the salary of this role?",
+        name: "salary",
+      },
+      {
+        type: "list",
+        message: "Which department does this role belong to?",
+        choices: ["Engineering", "Finance", "Legal", "Sales"],
+        name: "department",
+      },
+    ])
+    .then((answers) => {
+      const departmentMappings = {
+        Engineering: 1,
+        Finance: 2,
+        Legal: 3,
+        Sales: 4,
+      };
+
+      const query = `INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)`;
+
+      const departmentId = departmentMappings[answers.department];
+
+      db.query(
+        query,
+        [answers.role, answers.salary, departmentId],
+        (err, res) => {
+          if (err) {
+            console.log("Error inserting role:", err);
+          } else {
+            console.log("This role has been added to the db.");
+          }
+        }
+      );
+    });
+}
+
 // User selects: "View All Departments"
 // Table for departments must populate
 function viewAllDepartments() {
@@ -135,5 +186,6 @@ module.exports = {
   viewAllEmployees,
   addEmployee,
   viewAllRoles,
+  addRole,
   viewAllDepartments,
 };
