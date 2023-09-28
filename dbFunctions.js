@@ -34,4 +34,16 @@ function viewAllRoles() {
   });
 }
 
-module.exports = { viewAllEmployees, viewAllRoles };
+// User selects: "View All Departments"
+// Table for departments must populate
+function viewAllDepartments() {
+  db.query("SELECT * FROM department", (err, results) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(results);
+    }
+  });
+}
+
+module.exports = { viewAllEmployees, viewAllRoles, viewAllDepartments };

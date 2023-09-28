@@ -27,5 +27,8 @@ inquirer
       case "View All Roles":
         dbFunctions.viewAllRoles();
         break;
+      case "View All Departments":
+        dbFunctions.viewAllDepartments();
+        break;
     }
   });
