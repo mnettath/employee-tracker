@@ -27,6 +27,9 @@ inquirer
       case "Add Employee":
         dbFunctions.addEmployee();
         break;
+      case "Update Employee Role":
+        dbFunctions.updateRole();
+        break;
       case "View All Roles":
         dbFunctions.viewAllRoles();
         break;

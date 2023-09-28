@@ -108,6 +108,55 @@ function addEmployee() {
 }
 
 // UPDATE EMPLOYEE ROLE
+// which employee's role would you like to update? (list)
+// which role do you want to assign to the selected employee? (list)
+// updated employee's role?
+function updateRole() {
+  db.query(
+    // going into employee table and setting first_name and last_name to employee_name
+    "SELECT CONCAT (first_name, ' ', last_name) AS employee_name FROM employee",
+    (err, res) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+
+      // creates a new array given the results from the db query
+      // we want to return the employee_name
+      const employeeNames = res.map((result) => result.employee_name);
+
+      // going into the role table and selecting the titles
+      db.query("SELECT title FROM role", (err, res) => {
+        if (err) {
+          console.log(err);
+          return;
+        }
+        // creates a new array given the results from the db query, we want to return only titles
+        const roles = res.map((result) => result.title);
+
+        inquirer
+          .prompt([
+            {
+              type: "list",
+              message: "Which employee's role would you like to update?",
+              choices: employeeNames,
+              name: "reassignedEmployee",
+            },
+            {
+              type: "list",
+              message:
+                "Which role do you want to assign to the selected employee?",
+              choices: roles,
+              name: "reassignedRole",
+            },
+          ])
+          .then((answers) => {
+            console.log("Updated employee's role.");
+          });
+      });
+    }
+  );
+}
 
 // User selects: "View All Roles"
 // Table for Roles must populate
@@ -212,6 +261,7 @@ function addDepartment() {
 
 module.exports = {
   viewAllEmployees,
+  updateRole,
   addEmployee,
   viewAllRoles,
   addRole,
