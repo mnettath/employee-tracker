@@ -1,4 +1,3 @@
-const http = require("http");
 const mysql = require("mysql2");
 const inquirer = require("inquirer");
 
@@ -29,3 +28,7 @@ inquirer.prompt([
     name: "selection",
   },
 ]);
+
+db.query("SELECT * FROM movies", (err, results) => {
+  console.log(err);
+});
