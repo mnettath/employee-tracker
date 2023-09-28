@@ -13,14 +13,14 @@ const db = mysql.createConnection(
 
 // User selects: "View all Employees"
 // Table for employee must populate
-function viewAllEmployees() {
+function viewAllEmployees(callback) {
   db.query("SELECT * FROM employee", (err, results) => {
     if (err) {
       console.log(err);
     } else {
       console.table(results);
-      ``;
     }
+    callback();
   });
 }
 
@@ -32,7 +32,7 @@ function viewAllEmployees() {
 // who is the employee's manager (list)
 // Message: this employee has been added to the db
 
-function addEmployee() {
+function addEmployee(callback) {
   inquirer
     .prompt([
       {
@@ -102,6 +102,7 @@ function addEmployee() {
             console.log("Error inserting employee:", err);
           } else {
             console.log("This employee has been added to the db.");
+            callback();
           }
         }
       );
@@ -112,7 +113,7 @@ function addEmployee() {
 // which employee's role would you like to update? (list)
 // which role do you want to assign to the selected employee? (list)
 // updated employee's role?
-function updateRole() {
+function updateRole(callback) {
   db.query(
     // going into employee table and setting first_name and last_name to employee_name
     "SELECT CONCAT (first_name, ' ', last_name) AS employee_name FROM employee",
@@ -153,6 +154,7 @@ function updateRole() {
           ])
           .then((answers) => {
             console.log("Updated employee's role.");
+            callback();
           });
       });
     }
@@ -161,13 +163,14 @@ function updateRole() {
 
 // User selects: "View All Roles"
 // Table for Roles must populate
-function viewAllRoles() {
+function viewAllRoles(callback) {
   db.query("SELECT * FROM role", (err, results) => {
     if (err) {
       console.log(err);
     } else {
       console.table(results);
     }
+    callback();
   });
 }
 
@@ -176,7 +179,7 @@ function viewAllRoles() {
 // What is the salary of this role? input
 // Which department does this role belong to? list
 // Added "name of role" to the db
-function addRole() {
+function addRole(callback) {
   inquirer
     .prompt([
       {
@@ -216,6 +219,7 @@ function addRole() {
             console.log("Error inserting role:", err);
           } else {
             console.log("This role has been added to the db.");
+            callback();
           }
         }
       );
@@ -224,19 +228,20 @@ function addRole() {
 
 // User selects: "View All Departments"
 // Table for departments must populate
-function viewAllDepartments() {
+function viewAllDepartments(callback) {
   db.query("SELECT * FROM department", (err, results) => {
     if (err) {
       console.log(err);
     } else {
       console.table(results);
     }
+    callback();
   });
 }
 
 // ADD DEPARTMENT
 // What is the name of the department?
-function addDepartment() {
+function addDepartment(callback) {
   inquirer
     .prompt([
       {
@@ -253,6 +258,7 @@ function addDepartment() {
           console.log("Error inserting department:", err);
         } else {
           console.log("This department has been added to the db.");
+          callback();
         }
       });
     });

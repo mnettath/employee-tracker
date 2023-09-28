@@ -23,25 +23,25 @@ function mainSelection() {
     .then((answer) => {
       switch (answer.selection) {
         case "View all Employees":
-          dbFunctions.viewAllEmployees();
+          dbFunctions.viewAllEmployees(mainSelection);
           break;
         case "Add Employee":
-          dbFunctions.addEmployee();
+          dbFunctions.addEmployee(mainSelection);
           break;
         case "Update Employee Role":
-          dbFunctions.updateRole();
+          dbFunctions.updateRole(mainSelection);
           break;
         case "View All Roles":
-          dbFunctions.viewAllRoles();
+          dbFunctions.viewAllRoles(mainSelection);
           break;
         case "Add Role":
-          dbFunctions.addRole();
+          dbFunctions.addRole(mainSelection);
           break;
         case "View All Departments":
-          dbFunctions.viewAllDepartments();
+          dbFunctions.viewAllDepartments(mainSelection);
           break;
         case "Add Department":
-          dbFunctions.addDepartment();
+          dbFunctions.addDepartment(mainSelection);
           break;
       }
     });
