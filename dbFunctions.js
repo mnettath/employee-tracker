@@ -164,14 +164,22 @@ function updateRole(callback) {
 // User selects: "View All Roles"
 // Table for Roles must populate
 function viewAllRoles(callback) {
-  db.query("SELECT * FROM role", (err, results) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.table(results);
+  db.query(
+    // SELECT r.id, r.title, d.name AS department, r.salary
+    // specifies the columns that we want to retrieve from the tables, rename d.name as department
+
+    // role r INNER JOIN department d (stating aliases of r and d)
+    // join on r.department_id = d.id
+    "SELECT r.id, r.title, d.name AS department, r.salary from role r INNER JOIN department d ON r.department_id = d.id",
+    (err, results) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.table(results, ["id", "title", "department", "salary"]);
+      }
+      callback();
     }
-    callback();
-  });
+  );
 }
 
 // User selects: "Add Role"
