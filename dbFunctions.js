@@ -280,7 +280,7 @@ function addDepartment(callback) {
           console.log("Error inserting department:", err);
         } else {
           console.log("This department has been added to the db.");
-          callback();
+          viewAllDepartments(callback);
         }
       });
     });
