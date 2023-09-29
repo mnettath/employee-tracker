@@ -88,7 +88,7 @@ function addEmployee(callback) {
       // matches the departments to their ids
       const roleMappings = {
         "Sales Lead": 1,
-        Salesperson: 2,
+        "Sales Person": 2,
         "Lead Engineer": 3,
         "Software Engineer": 4,
         "Account Manager": 5,
@@ -116,7 +116,7 @@ function addEmployee(callback) {
             console.log("Error inserting employee:", err);
           } else {
             console.log("This employee has been added to the db.");
-            callback();
+            viewAllEmployees(callback);
           }
         }
       );
@@ -168,7 +168,7 @@ function updateRole(callback) {
           ])
           .then((answers) => {
             console.log("Updated employee's role.");
-            callback();
+            viewAllEmployees(callback);
           });
       });
     }
@@ -241,7 +241,7 @@ function addRole(callback) {
             console.log("Error inserting role:", err);
           } else {
             console.log("This role has been added to the db.");
-            callback();
+            viewAllRoles(callback);
           }
         }
       );
