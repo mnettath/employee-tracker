@@ -14,14 +14,28 @@ const db = mysql.createConnection(
 // User selects: "View all Employees"
 // Table for employee must populate
 function viewAllEmployees(callback) {
-  db.query("SELECT * FROM employee", (err, results) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.table(results);
+  db.query(
+    "SELECT e.id, e.first_name, e.last_name, r.title, d.name AS department, r.salary, CONCAT(m.first_name,' ', m.last_name) AS manager FROM employee e INNER JOIN role r on e.role_id = r.id INNER JOIN department d ON r.department_id = d.id LEFT JOIN employee m ON e.manager_id = m.id",
+    // FROM employee e INNER JOIN role r on e.role_id = r.id
+    // INNER JOIN department d ON r.department_id = d.id
+    // LEFT JOIN employee m ON e.manager_id = m.id
+    (err, results) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.table(results, [
+          "id",
+          "first_name",
+          "last_name",
+          "title",
+          "department",
+          "salary",
+          "manager",
+        ]);
+      }
+      callback();
     }
-    callback();
-  });
+  );
 }
 
 // User selects: "Add Employee"
