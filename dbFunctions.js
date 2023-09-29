@@ -229,11 +229,11 @@ function addRole(callback) {
 // User selects: "View All Departments"
 // Table for departments must populate
 function viewAllDepartments(callback) {
-  db.query("SELECT * FROM department", (err, results) => {
+  db.query("SELECT id, name FROM department", (err, results) => {
     if (err) {
       console.log(err);
     } else {
-      console.table(results);
+      console.table(results, ["id", "name"]);
     }
     callback();
   });
