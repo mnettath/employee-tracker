@@ -77,7 +77,7 @@ function addEmployee(callback) {
         choices: [
           "John Doe",
           "Mike Chan",
-          "Ashely Rodriguez",
+          "Ashley Rodriguez",
           "Kevin Tupik",
           "Kunal Singh",
         ],
