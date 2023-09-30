@@ -12,9 +12,7 @@ To begin, please copy and paste the contents of the schema.sql to create the tab
 
 ## Usage
 
-Please see the following usage demonstration:
-
-![alt text](assets/images/screenshot.png)
+Please see the following usage demonstration: https://drive.google.com/file/d/1l7zNGvRCIa03XDRbXEdnhINkInYTxezd/view
 
 ## Credits
 
